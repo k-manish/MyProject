@@ -1,22 +1,33 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/MyProject/config/constants.php');
+/**
+* File Name :DbConnection.php
+* File Path :http://localhost/MyProject/Lib/
+* Author :Manish Kumar
+* Date of creation :29/8/2016
+* Comments if any : this is used for connecting database, doing sql query and after that retyrn the result.
+*
+*/
+?>
+
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/MyProject/config/Constants.php');
+
+/**
+* function for connecting database and return connection value
+*/
+/** @ param string $dbname  name of schema.
+    @return $conn 
+*/
 function connectdb($dbname)
 {
     $conn=new mysqli(server,user,dbpassword,$dbname);
-    if($conn->connect_error)
-    {
-        echo 'connection failed';
-        exit;
-    }
-    else
-    {
-        return $conn;
-    }  
+    return $conn; 
 }
 
+/** @ param string $dbname  name of schema. */
 function createdb($dbname)
 {
-    $conn=new mysqli("localhost","root","");
+    $conn=new mysqli(server,user,dbpassword);
     if($conn->connect_error)
     {
         echo "connection failed";
@@ -33,3 +44,15 @@ function createdb($dbname)
         }
     }
 }
+
+/**@param $conn
+ * @param string $sql  sql instruction to be queried
+ * @return $result   query result;
+ */
+function dbquery($conn,$sql)
+{
+    $result=$conn->query($sql);
+    return $result;
+}
+
+?>
