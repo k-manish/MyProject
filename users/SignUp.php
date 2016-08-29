@@ -1,3 +1,14 @@
+<?php
+/**
+* File Name :SignUp.php
+* File Path :http://localhost/MyProject/users/
+* Author :Manish Kumar
+* Date of creation :29/8/2016
+* Comments if any : This is user registration page.
+*
+*/
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,7 +19,7 @@
     <body style="Background-color: rgb(100,170,150)">
         
         <div id="heading" class="form1">
-            <h2> SignUp YourSelf....</h2>
+            <h2>Fill All Details....</h2>
         </div>
         
         <form id="signform" class="form1" onsubmit="return checkfun();" action="CSignUp.php" method="get" >

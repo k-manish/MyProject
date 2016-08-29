@@ -1,19 +1,18 @@
 <?php
-session_start();
-if(isset($_SESSION["err_msg"]))
-{
-    echo $_SESSION["err_msg"];
-    session_unset($_SESSION["err_msg"]);
-}
-if(isset($_GET['registered']) && $_GET['registered']==1)
-{
-    echo 'you have been registered and password has been sent to your mail';
-}
-if(isset($_GET['registered']) && $_GET['registered']==2)
-{
-    echo "<b>Email-id is alreay registered</b>";
-}
+/**
+* File Name :LoginPage.php
+* File Path :http://localhost/MyProject/users/
+* Author :Manish Kumar
+* Date of creation :29/8/2016
+* Comments if any : this page is used to login the user.
+*           it also provide the link to signup for a new user and resetting password. 
+* 
+*/
 ?>
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     
@@ -25,7 +24,11 @@ if(isset($_GET['registered']) && $_GET['registered']==2)
     
     <body style="background-color: rgb(50,100,70)">
         <div id="firstdiv">
-            <p id="errline" ><span style="display: none">please provide correct username/password</span></p>
+            <p id="errline" >
+                <?php require_once($_SERVER['DOCUMENT_ROOT'].'/MyProject/Lib/ErrorLogin.php'); ?>
+                <span style="display: none">please provide correct username/password</span>
+            </p>
+            
             <form id="loginform" action="CLoginPage.php" method="post" >
                 <table id="logtable" width="50%" style="padding: 15px">
                         <th>User-Id:-</th>
@@ -40,7 +43,7 @@ if(isset($_GET['registered']) && $_GET['registered']==2)
                     </tr>
                     <tr>
                         <td><a href="<?php echo 'http://' .$_SERVER['HTTP_HOST'].'/MyProject/users/SignUp.php'; ?>" target=_blank>singup</a></td>
-                        <td><a href="https://www.google.com">forget password</a></td>
+                        <td style="padding-right: 0"><a href="https://www.google.com" >forget password</a></td>
                     </tr>
                 </table>
             </form>

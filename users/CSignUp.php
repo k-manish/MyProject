@@ -1,7 +1,23 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/MyProject/config/dbconnection.php');
+/**
+* File Name :CSignUp.php
+* File Path :http://localhost/MyProject/users/
+* Author :Manish Kumar
+* Date of creation :29/8/2016
+* Comments if any : this file is used to add a user added by antoher user or the user itself.
+*
+*/
+?>
+
+<?php
+session_start();
+require_once($_SERVER['DOCUMENT_ROOT'].'/MyProject/Lib/DbConnection.php');
 class SignUp
 {
+    /** @var string $name name of user.
+     * @var  string $mail  email-id of user.
+     * @var  string  $mobile  mobile number of user.
+     */
     public $name;
     public $mail;
     public $mobile;
@@ -31,19 +47,60 @@ class SignUp
         }
         $this->store();
     }
+    
+    /**
+     *
+     *check user is logeed in or not and call either foruseraddition or forsignup method 
+     *@return void
+     */
     function store()
     {
         $conn=connectdb("demodb");
-        $sql="insert into user_detail values('" . $this->name ."','" . $this->mail ."','" .$this->mobile ."');";
-        if($conn->query($sql)===TRUE){
-            echo 'you have been signed up now';
-            header('Location: LoginPage.php?registered=1');
+        if($_SESSION['user']){
+            $this->foruseraddition($conn);
         }
         else{
-            header('Location: LoginPage.php?registered=2');
+            $this->forsignup($conn);
         }
     }
+        
+        
+    /**
+     *take user detail and add into database if user mail-id is not present already.
+     *@return void
+     */
+    public function foruseraddition($conn)
+    {
+        $sql="insert into user_detail values
+                    ('" . $this->name ."','" . $this->mail ."','" .$this->mobile ."','" .$_SESSION['user'] ."');";
+        if($conn->query($sql)===TRUE)
+        {
+            $_SESSION['addition']="user has been added successfully";
+        }
+        else{
+            $_SESSION['addition']="user is already present";
+        }
+        header('Location:homepage.php');
+    }
     
+    /**
+     *take user detail and add into database if user mail-id is not present already.
+     *@return void
+     */
+    public function forsignup($conn)
+    {
+        $sql="insert into user_detail(name,mail_id,mobile) values
+                    ('" . $this->name ."','" . $this->mail ."','" .$this->mobile ."');";
+                    
+        if($conn->query($sql)===TRUE){
+            $_SESSION["err_msg"]="you have been registered and password has been sent to your mail";
+        }
+        else{
+            $_SESSION["err_msg"]="Email-id is alreay registered";
+        }
+        
+        header('Location:LoginPage.php');
+    }
 }
 
 if(isset($_GET["name"]))
