@@ -7,12 +7,9 @@
 * Comments if any : check user is logged in or not.
 *
 */
-?>
-<?php
 if(!(isset($_SESSION["user"])))
  {
     $_SESSION["err_msg"]="please login first";
     header("Location:LoginPage.php");
     exit;
 }
-?>

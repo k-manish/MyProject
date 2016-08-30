@@ -7,13 +7,9 @@
 * Comments if any : used to show error message.
 *
 */
-?>
-
-<?php
-    if(isset($_SESSION["err_msg"]))
-    {
-        echo $_SESSION["err_msg"];
-        session_unset($_SESSION["err_msg"]);
-    }
-?>
+if(isset($_SESSION["err_msg"]))
+{
+    echo $_SESSION["err_msg"];
+    session_unset($_SESSION["err_msg"]);
+}
     

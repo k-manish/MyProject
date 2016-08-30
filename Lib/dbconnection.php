@@ -7,10 +7,8 @@
 * Comments if any : this is used for connecting database, doing sql query and after that retyrn the result.
 *
 */
-?>
 
-<?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/MyProject/config/Constants.php');
+require_once(__DIR__.'/../config/Constants.php');
 
 /**
 * function for connecting database and return connection value
@@ -54,5 +52,3 @@ function dbquery($conn,$sql)
     $result=$conn->query($sql);
     return $result;
 }
-
-?>
