@@ -7,11 +7,8 @@
 * Comments if any : this file is used to add a user added by antoher user or the user itself.
 *
 */
-?>
-
-<?php
 session_start();
-require_once($_SERVER['DOCUMENT_ROOT'].'/MyProject/Lib/DbConnection.php');
+require_once(__DIR__.'/../Lib/DbConnection.php');
 class SignUp
 {
     /** @var string $name name of user.
@@ -109,4 +106,3 @@ if(isset($_GET["name"]))
     $obj->setdata();
     $obj->check();
 }
-?>

@@ -14,7 +14,7 @@
     <head>
         <title>signnup</title>
         <link rel="stylesheet" type="text/css" 
-               href=" <?php echo 'http://' .$_SERVER['HTTP_HOST'].'/MyProject/Assets/css/CssSign.css'; ?>" >
+               href=" <?php echo 'http://' .__DIR__.'/../Assets/css/CssSign.css'; ?>" >
     </head>
     <body style="Background-color: rgb(100,170,150)">
         
@@ -45,7 +45,7 @@
             </table>
         </form>
         
-        <script src="<?php echo 'http://' .$_SERVER['HTTP_HOST'].'/MyProject/Assets/js/SignUp.js'; ?>"></script>
+        <script src="<?php echo 'http://' .__DIR__.'/../Assets/js/SignUp.js'; ?>"></script>
         
     </body>
 </html>

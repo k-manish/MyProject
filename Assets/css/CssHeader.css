@@ -1,0 +1,23 @@
+#homediv1
+{
+    background-color: rgb(170,170,170);
+    position: relative;
+    height: 70px;
+    top: 2px ;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+#logout
+{
+    font-size: 20px;
+    height: 40px;
+    background-color:rgb(120,60,150);
+}
+#homespan1
+{
+    margin:10px;
+    position: absolute;
+    right:10px;
+    padding: 10px;
+}

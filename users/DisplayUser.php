@@ -1,5 +1,6 @@
 <?php
-require_once('ShowUser.php');
+require_once(__DIR__ .'/../Lib/ShowUser.php');
+require_once(__DIR__.'/../Lib/CheckServer.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,8 +8,18 @@ require_once('ShowUser.php');
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <?php
+            $site="http://maxcdn.bootstrapcdn.com";
+            $port=80;
+            $check=statweb($site,$port);
+            if(!$check)
+            {
+                echo '<link rel="stylesheet" href="http:// '.$_SERVER['HTTP_HOST'].
+                '/MyProject/Assets/vendor/bootstrap-3.3.7/css/bootstrap.min.css';
+            }
+        ?>
+            
+       
     </head>
     <body>
         <div class="container">
@@ -20,22 +31,32 @@ require_once('ShowUser.php');
             </div>
             <?php
                 $c=new ShowUser();  
-                $res=$c->show("demodb");
-                while($rows=$res->fetch_assoc())  //getting data row-by-row
-                {
-                    echo '<div class="row">';
-                    echo '<div class="col-sm-4">';
-                    echo $rows["name"];
-                    echo '</div>';
-                    echo '<div class="col-sm-4">';
-                    echo $rows["mail_id"];
-                    echo '</div>';
-                    echo '<div class="col-sm-4">';
-                    echo $rows["mobile"];
-                    echo '</div>';
-                    echo '</div>';          
-                 }
+                $res=$c->show(dbname);
+                if(!empty($res)){
+                    while($rows=$res->fetch_assoc())  //getting data row-by-row
+                    {
+                        echo '<div class="row">';
+                        echo '<div class="col-sm-4">';
+                        echo $rows["name"];
+                        echo '</div>';
+                        echo '<div class="col-sm-4">';
+                        echo $rows["mail_id"];
+                        echo '</div>';
+                        echo '<div class="col-sm-4">';
+                        echo $rows["mobile"];
+                        echo '</div>';
+                        echo '</div>';          
+                    }
+                }
             ?>
         </div>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <?php
+            if(!$check)
+            {
+                echo '<link rel="stylesheet" href="http:// '.$_SERVER['HTTP_HOST'].
+                '/MyProject/Assets/vendor/bootstrap-3.3.7/js/bootstrap.min.js';
+            }
+        ?>
     </body>
 </html>

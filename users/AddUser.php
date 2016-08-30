@@ -7,10 +7,7 @@
 * Comments if any : this page is used for adding another user by a user.
 *
 */
-?>
 
-<?php
-
-require_once($_SERVER['DOCUMENT_ROOT'].'/MyProject/Lib/Header.php');
+require_once(__DIR__.'/../Lib/Header.php');
 require_once("signUp.php");
-?>
+

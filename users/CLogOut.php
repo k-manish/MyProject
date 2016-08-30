@@ -7,11 +7,6 @@
 * Comments if any : this page is used to make user logout.
 *
 */
-?>
-
-<?php
 session_start();
 session_destroy();
 header("Location:LoginPage.php");
-exit;
-?>
